@@ -38,11 +38,12 @@ services:
     - prisma
     volumes:
     - ./prisma/:/app/prisma/
+    - /app/prisma/node_modules
     networks:
     - nexus-benchmark-network
     entrypoint:
-    - npx
-    - prisma
+    - npm
+    - run
     - deploy
 networks:
   nexus-benchmark-network:
