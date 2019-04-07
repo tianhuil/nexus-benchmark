@@ -1,0 +1,38 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgres:11.2-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: nexus
+      POSTGRES_USER: nexus
+    networks:
+    - nexus-benchmark-network
+    tmpfs:
+    - /var/lib/postgresql/data:rw
+  prisma:
+    image: prismagraphql/prisma:1.29.2
+    restart: always
+    networks:
+    - nexus-benchmark-network
+    depends_on:
+    - postgres
+    volumes:
+    - ./prisma/:/app/prisma/
+    ports:
+    - 4466:4466
+    environment:
+      PRISMA_CONFIG: |
+        port: 4466
+        databases:
+          default:
+            connector: postgres
+            host: postgres
+            port: 5432
+            user: nexus
+            password: nexus
+            migrations: true
+networks:
+  nexus-benchmark-network:
+    name: nexus-benchmark-network
+    driver: bridge

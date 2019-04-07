@@ -1,0 +1,13 @@
+endpoint: postgres
+datamodel: datamodel.prisma
+
+generate:
+  - generator: typescript-client
+    output: generated/prisma-client
+
+hooks:
+  post-deploy:
+    - prisma generate
+
+seed:
+  run: npx ts-node-dev ./prisma/seed.ts
