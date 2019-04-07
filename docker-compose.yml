@@ -13,12 +13,12 @@ services:
   prisma:
     image: prismagraphql/prisma:1.29.2
     restart: always
-    networks:
-    - nexus-benchmark-network
     depends_on:
     - postgres
     volumes:
     - ./prisma/:/app/prisma/
+    networks:
+    - nexus-benchmark-network
     ports:
     - 4466:4466
     environment:
@@ -32,6 +32,18 @@ services:
             user: nexus
             password: nexus
             migrations: true
+  benchmark:
+    image: nexus-benchmark:dev
+    depends_on:
+    - prisma
+    volumes:
+    - ./prisma/:/app/prisma/
+    networks:
+    - nexus-benchmark-network
+    entrypoint:
+    - npx
+    - prisma
+    - deploy
 networks:
   nexus-benchmark-network:
     name: nexus-benchmark-network

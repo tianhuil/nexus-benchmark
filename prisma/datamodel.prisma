@@ -1,23 +1,16 @@
 type User {
-  id:         ID! @unique
-  createdAt:  DateTime!
-  updatedAt:  DateTime!
-  name:  String!
-  posts:      [Post!]! @relation(name: "Posts")
+  id: ID! @unique
+  email: String! @unique
+  name: String
+  posts: [Post!]!
 }
 
 type Post {
-  id:         ID! @unique
-  createdAt:  DateTime!
-  updatedAt:  DateTime!
-  author:     User! @relation(name: "Posts")
-  headline:   String!
-  topic:      PostTopic!
-  body:       String
-}
-
-enum PostTopic {
-  DISCUSSION
-  HELP
-  SHOWCASE
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  published: Boolean! @default(value: "false")
+  title: String!
+  content: String
+  author: User!
 }
