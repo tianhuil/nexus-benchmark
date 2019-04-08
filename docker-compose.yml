@@ -38,13 +38,13 @@ services:
     - prisma
     volumes:
     - ./prisma/:/app/prisma/
-    - /app/prisma/node_modules
     networks:
     - nexus-benchmark-network
     entrypoint:
-    - npm
-    - run
-    - deploy
+    - ./node_modules/.bin/ts-node
+    - src/index.ts
+    - "500"
+    - "4"
 networks:
   nexus-benchmark-network:
     name: nexus-benchmark-network

@@ -7,14 +7,16 @@
     "faker": "^4.1.0",
     "graphql": "^14.2.1",
     "prisma": "^1.29.2",
-    "prisma-client-lib": "^1.29.2"
+    "prisma-client-lib": "^1.29.2",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.4.2"
   },
   "devDependencies": {
     "@types/faker": "^4.1.5",
     "@types/graphql": "^14.2.0"
   },
   "scripts": {
-    "deploy": "prisma deploy"
+    "deploy": "prisma deploy "
   },
   "author": "",
   "license": "ISC"
