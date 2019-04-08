@@ -42,9 +42,10 @@ services:
     - nexus-benchmark-network
     entrypoint:
     - ./node_modules/.bin/ts-node
-    - src/index.ts
+    - src/create.ts
     - "500"
     - "4"
+    - "1"
 networks:
   nexus-benchmark-network:
     name: nexus-benchmark-network
