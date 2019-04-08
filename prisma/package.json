@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "prisma": "^1.29.2"
+    "prisma": "^1.29.2",
+    "prisma-client-lib": "^1.29.2",
+    "graphql": "^14.2.1"
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.2.0"
   },
   "scripts": {
     "deploy": "prisma deploy"
