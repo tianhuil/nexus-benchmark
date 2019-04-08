@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "faker": "^4.1.0",
+    "graphql": "^14.2.1",
     "prisma": "^1.29.2",
-    "prisma-client-lib": "^1.29.2",
-    "graphql": "^14.2.1"
+    "prisma-client-lib": "^1.29.2"
   },
   "devDependencies": {
+    "@types/faker": "^4.1.5",
     "@types/graphql": "^14.2.0"
   },
   "scripts": {
