@@ -11,4 +11,7 @@ dev-down:
 	docker-compose down
 
 deploy:
-	docker-compose run  --entrypoint "npm run deploy" benchmark
+	docker-compose run --entrypoint "npm run deploy" benchmark
+
+benchmark:
+	docker-compose run benchmark
