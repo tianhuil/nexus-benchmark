@@ -37,7 +37,7 @@ services:
     depends_on:
     - prisma
     volumes:
-    - ./prisma/:/app/prisma/
+    - ./prisma/:/app/prisma/:rw
     networks:
     - nexus-benchmark-network
     entrypoint:
