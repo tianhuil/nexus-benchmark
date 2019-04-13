@@ -2,7 +2,7 @@ build:
 	docker build prisma/. -t nexus-benchmark:dev
 
 dev-up:
-	docker-compose up postgres prisma
+	docker-compose up postgres prisma nginx-prisma
 
 dev-benchmark:
 	docker-compose up benchmark

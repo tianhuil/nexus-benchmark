@@ -20,7 +20,7 @@ services:
     networks:
     - nexus-benchmark-network
     ports:
-    - 4466:4466
+    - 4466
     environment:
       PRISMA_CONFIG: |
         port: 4466
@@ -32,10 +32,20 @@ services:
             user: nexus
             password: nexus
             migrations: true
+  nginx-prisma:
+    image: nginx:latest
+    depends_on:
+    - prisma
+    volumes:
+    - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+    - nexus-benchmark-network
+    ports:
+    - "4466:4466"
   benchmark:
     image: nexus-benchmark:dev
     depends_on:
-    - prisma
+    - nginx-prisma
     volumes:
     - ./prisma/:/app/prisma/:rw
     networks:
