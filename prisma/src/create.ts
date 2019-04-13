@@ -10,7 +10,7 @@ const newAuthor = (i: number) => prisma.createUser({
     email: faker.internet.email() + i,
   })
 
-const writePost = (authorId: ID_Output) => prisma.createPost({
+const post = (authorId: ID_Output) => ({
   author: { connect: { id: authorId } },
   title: faker.lorem.sentence(),
   content: faker.lorem.paragraphs(paragraphs),
@@ -40,9 +40,10 @@ const main = async () => {
   inplaceShuffle(articleAuthorIds)
 
   const numArticles = articleAuthorIds.length
+  const posts = articleAuthorIds.map(i => post(i))
 
   const start = new Date().getTime()
-  await Promise.all(articleAuthorIds.map(i => writePost(i)))
+  await Promise.all(posts.map(p => prisma.createPost(p)))
   const end = new Date().getTime()
   const duration = end - start
   
